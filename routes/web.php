@@ -48,7 +48,9 @@ Route::middleware('auth')
         $router->controller(HomeController::class)
             ->group(function ($router) {
                 $router->get('home', 'index')->name('home');
-            });
+                $router->get('photo/submit', 'photoForm')->name('photo.form');
+                $router->post('photo', 'photo')->name('photo.store');
+    });
 
         $router->controller(PostController::class)
             ->prefix('posts')

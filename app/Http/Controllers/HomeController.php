@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use phpDocumentor\Reflection\Types\Never_;
 
 class HomeController extends Controller
 {
@@ -25,6 +28,30 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\never|Response
+     */
+    public function photo(Request $request)
+    {
+        $path = $request->photo->storeAs('public', 'file.jpg');
+        if (!$path) {
+           return abort(404);
+        }
+        return response(["success" => true]);
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function photoForm()
+    {
+        return view('photo-save');
     }
 
     /**

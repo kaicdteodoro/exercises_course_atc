@@ -85,8 +85,9 @@ class ClientController extends Controller
      */
     public function getNames(string $names = ''): View
     {
-        $names = explode(',', $names);
-        return view('clients.clients', compact('names'));
+        $names = $names != '' ? explode(',', $names) : [];
+
+        return view('clients', compact('names'));
     }
 
     /**

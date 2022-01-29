@@ -47,7 +47,7 @@ Route::middleware('auth')
         $router->controller(HomeController::class)
             ->group(function ($router) {
                 $router->get('home', 'index')->name('home');
-        });
+            });
 
         $router->controller(PostController::class)
             ->prefix('posts')
@@ -62,4 +62,10 @@ Route::middleware('auth')
     });
 
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+
+Route::controller(HomeController::class)
+    ->prefix('home')
+    ->group(function ($router) {
+    $router->get('hello/{name?}', 'hello')->name('home.hello');
+});
 

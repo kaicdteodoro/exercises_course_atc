@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,16 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    /**
+     * Show the application hello view.
+     *
+     * @param string|null $name
+     * @return View
+     */
+    public function hello(string $name = null): View
+    {
+        return view('hello', compact('name'));
     }
 }

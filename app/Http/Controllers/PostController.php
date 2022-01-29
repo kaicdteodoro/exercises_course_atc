@@ -21,7 +21,6 @@ class PostController extends Controller
      */
     public function index(): JsonResponse
     {
-        logger()->error('testinho papae');
         $posts = Post::get();
         return response()->json($posts);
     }

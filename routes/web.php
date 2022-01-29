@@ -53,7 +53,6 @@ Route::middleware('auth')
             ->prefix('posts')
             ->group(function ($router) {
                 $router->get('', 'index')->name('posts.index');
-                $router->get('create', 'create')->name('posts.create');
                 $router->post('store', 'store')->name('posts.store');
                 $router->get('show/{post}', 'show')->name('posts.show');
                 $router->get('edit/{post}', 'edit')->name('posts.edit');
@@ -62,4 +61,5 @@ Route::middleware('auth')
             });
     });
 
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 

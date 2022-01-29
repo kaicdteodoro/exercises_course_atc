@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Models\Client;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -74,6 +75,18 @@ class ClientController extends Controller
     {
         $client = Client::where('name', $name)->first();
         return response()->json($client);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param string $names
+     * @return View
+     */
+    public function getNames(string $names = ''): View
+    {
+        $names = explode(',', $names);
+        return view('clients.clients', compact('names'));
     }
 
     /**

@@ -31,6 +31,7 @@ Route::controller(ClientController::class)
         $router->get('show/{client}', 'show')->name('client.show');
         $router->get('bills/{client}', 'getBills')->name('client.bills');
         $router->get('name/{name}', 'getName')->name('client.name');
+        $router->get('names/{names?}', 'getNames')->name('client.names');
         $router->get('search/{text}', 'search')->name('client.search');
         $router->post('store', 'store')->name('client.store');
     });

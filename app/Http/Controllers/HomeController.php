@@ -37,4 +37,15 @@ class HomeController extends Controller
     {
         return view('hello', compact('name'));
     }
+
+    /**
+     * Verify a energy calculate and return response on the application dbz view.
+     *
+     * @param float|null $energy
+     * @return View
+     */
+    public function energy(float $energy = null): View
+    {
+        return view('dbz', compact('energy'));
+    }
 }

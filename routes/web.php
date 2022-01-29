@@ -66,6 +66,8 @@ Route::get('/posts/create', [PostController::class, 'create'])->name('posts.crea
 Route::controller(HomeController::class)
     ->prefix('home')
     ->group(function ($router) {
+        $router->get('', 'index')->name('home.index');
     $router->get('hello/{name?}', 'hello')->name('home.hello');
+    $router->get('dbz/{energy?}', 'energy')->name('home.dbz');
 });
 

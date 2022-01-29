@@ -7,7 +7,10 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
 {
@@ -37,14 +40,14 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return JsonResponse
+     * @return RedirectResponse
      */
-    public function store(Request $request): JsonResponse
+    public function store(Request $request): RedirectResponse
     {
         $new_post = $request->only(['title', 'content']);
         $new_post["user_id"] = auth()->user()->id;
         $created_post = Post::create($new_post);
-        return response()->json($created_post);
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -75,24 +78,24 @@ class PostController extends Controller
      *
      * @param Request $request
      * @param Post $post
-     * @return JsonResponse
+     * @return RedirectResponse
      */
-    public function update(Request $request, Post $post): JsonResponse
+    public function update(Request $request, Post $post): RedirectResponse
     {
         $updated_input = $request->only(['title', 'content']);
-        $response = $post->update($updated_input);
-        return response()->json(['success' => $response]);
+        $post->update($updated_input);
+        return redirect()->route('posts.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Post $post
-     * @return JsonResponse
+     * @return RedirectResponse
      */
-    public function delete(Post $post): JsonResponse
+    public function delete(Post $post): RedirectResponse
     {
-        $response = $post->delete();
-        return response()->json(['success' => boolval($response)]);
+        $post->delete();
+        return redirect()->route('posts.index');
     }
 }

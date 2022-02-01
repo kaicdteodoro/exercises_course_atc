@@ -26,4 +26,14 @@ class StoreClientRequest extends FormRequest
     {
         return Client::$rules;
     }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return Client::$messages;
+    }
 }

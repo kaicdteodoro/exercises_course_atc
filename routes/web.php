@@ -45,26 +45,23 @@ Route::controller(BillController::class)
         $router->get('between/{value1}/{value2}', 'getValueBetween')->name('bills.between');
     });
 
-Route::middleware('auth')
-    ->group(function ($router) {
-        $router->controller(HomeController::class)
-            ->group(function ($router) {
-                $router->get('home', 'index')->name('home');
-                $router->get('photo/submit', 'photoForm')->name('photo.form');
-                $router->post('photo', 'photo')->name('photo.store');
-    });
+    Route::controller(HomeController::class)
+        ->group(function ($router) {
+            $router->get('home', 'index')->name('home');
+            $router->get('photo/submit', 'photoForm')->name('photo.form');
+            $router->post('photo', 'photo')->name('photo.store');
+        });
+    Route::controller(PostController::class)
+        ->prefix('posts')
+        ->group(function ($router) {
+            $router->get('', 'index')->name('posts.index');
+            $router->post('store', 'store')->name('posts.store');
+            $router->get('show/{post}', 'show')->name('posts.show');
+            $router->get('edit/{post}', 'edit')->name('posts.edit');
+            $router->post('update/{post}', 'update')->name('posts.update');
+            $router->get('delete/{post}', 'delete')->name('posts.delete');
+        });
 
-        $router->controller(PostController::class)
-            ->prefix('posts')
-            ->group(function ($router) {
-                $router->get('', 'index')->name('posts.index');
-                $router->post('store', 'store')->name('posts.store');
-                $router->get('show/{post}', 'show')->name('posts.show');
-                $router->get('edit/{post}', 'edit')->name('posts.edit');
-                $router->post('update/{post}', 'update')->name('posts.update');
-                $router->get('delete/{post}', 'delete')->name('posts.delete');
-            });
-    });
 
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 
@@ -72,7 +69,7 @@ Route::controller(HomeController::class)
     ->prefix('home')
     ->group(function ($router) {
         $router->get('', 'index')->name('home.index');
-    $router->get('hello/{name?}', 'hello')->name('home.hello');
-    $router->get('dbz/{energy?}', 'energy')->name('home.dbz');
-});
+        $router->get('hello/{name?}', 'hello')->name('home.hello');
+        $router->get('dbz/{energy?}', 'energy')->name('home.dbz');
+    });
 

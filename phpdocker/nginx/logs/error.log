@@ -255,3 +255,4 @@
 2022/02/01 22:09:19 [notice] 1#1: start worker process 31
 2022/02/01 22:09:19 [notice] 1#1: start worker process 32
 2022/02/01 22:09:19 [notice] 1#1: start worker process 33
+2022/02/01 23:02:11 [warn] 33#33: *74 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000001, client: 172.28.0.1, server: , request: "POST /photo HTTP/1.1", host: "localhost:8082", referrer: "http://localhost:8082/photo/submit"

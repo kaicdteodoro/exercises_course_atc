@@ -40,6 +40,7 @@ Route::controller(BillController::class)
     ->prefix('bills')
     ->group(function ($router) {
         $router->post('store', 'store')->name('bills.store');
+        $router->get('create', 'create')->name('bills.create')->middleware('auth');
         $router->get('expensive/{value}', 'getExpensive')->name('bills.expensive');
         $router->get('between/{value1}/{value2}', 'getValueBetween')->name('bills.between');
     });

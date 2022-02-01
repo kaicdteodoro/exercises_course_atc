@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Models\Bill;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBillRequest extends FormRequest
+class  StoreBillRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

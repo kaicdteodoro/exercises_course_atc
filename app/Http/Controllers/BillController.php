@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateBillRequest;
 use App\Models\Bill;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class BillController extends Controller
 {
@@ -23,11 +24,11 @@ class BillController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('bills.create');
     }
 
     /**

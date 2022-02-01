@@ -17,7 +17,10 @@ class Client extends Model
         'phone' => 'string|required|max:255',
         'id_number' => 'string|required|max:255'
     ];
-    public static $messages = ['name.required' => 'Um nome é obrigatório'];
+    public static $messages = [
+        'name.required' => 'Um nome é obrigatório',
+        'email.required' => 'E-mail não pode ser vazio',
+    ];
     protected $casts = ['name' => 'string', 'email' => 'string', 'phone' => 'string', 'id_number' => 'string'];
 
     public function bills()

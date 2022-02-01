@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Bill;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreBillRequest extends FormRequest
@@ -23,8 +24,16 @@ class StoreBillRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        return Bill::$rules;
+    }
+
+    /**
+     * Get the validation messages rules that apply to the request.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return Bill::$messages;
     }
 }

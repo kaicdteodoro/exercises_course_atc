@@ -38,7 +38,7 @@ class BillController extends Controller
      */
     public function store(StoreBillRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

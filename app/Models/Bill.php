@@ -12,7 +12,7 @@ class Bill extends Model
     protected $fillable = ['invoice', 'installment', 'value', 'client_id', 'due_date', 'payment_date'];
     protected $casts = ['invoice' => 'int', 'installment' => 'int', 'value' => 'float', 'client_id' => 'int'];
     public static $rules = [
-        'invoice' => 'int|required',
+        'invoice' => 'required',
         'installment' => 'int|required',
         'value' => 'float|required'
     ];

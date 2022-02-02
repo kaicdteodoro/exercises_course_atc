@@ -37,11 +37,10 @@ class HomeController extends Controller
      */
     public function photo(Request $request)
     {
+        $request->validate(['photo' => 'required|mimes:jpg,png']);
         $path = $request->photo->storeAs('public', 'file.jpg');
-        if (!$path) {
-           return abort(404);
-        }
-        return response(["success" => true]);
+        $data = Storage::url($path);
+        return response(["success" => true, "data" => $data]);
     }
 
     /**

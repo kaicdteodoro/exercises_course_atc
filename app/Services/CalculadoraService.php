@@ -32,16 +32,16 @@ class CalculadoraService
                 ];
             }
             $result = $num1 / $num2;
+            return [
+                'success' => true,
+                'message' => 'Div feita com sucesso',
+                'data' => $result
+            ];
         } catch (\Throwable $th) {
             return [
                 'success' => false,
                 'message' => 'Erro ao fazer div'
             ];
         }
-        return [
-            'success' => true,
-            'message' => 'Div feita com sucesso',
-            'data' => $result
-        ];
     }
 }

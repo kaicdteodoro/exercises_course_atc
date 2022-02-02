@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "predis/predis": "^1.1",
         "prettus/l5-repository": "^2.7"
     },
     "require-dev": {

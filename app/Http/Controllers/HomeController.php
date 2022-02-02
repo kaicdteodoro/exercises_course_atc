@@ -33,14 +33,16 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\never|Response
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function photo(Request $request)
     {
         $request->validate(['photo' => 'required|mimes:jpg,png']);
         $path = $request->photo->storeAs('public', 'file.jpg');
-        $data = Storage::url($path);
-        return response(["success" => true, "data" => $data], 302);
+        Storage::url($path);
+        return redirect()->route('home');
+//        (["success" => true, "data" => $data], 302);
     }
 
     /**

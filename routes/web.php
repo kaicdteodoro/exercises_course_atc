@@ -47,7 +47,7 @@ Route::controller(BillController::class)
 
     Route::controller(HomeController::class)
         ->group(function ($router) {
-            $router->get('home', 'index')->name('home');
+            $router->get('', 'index')->name('home');
             $router->get('photo/submit', 'photoForm')->name('photo.form');
             $router->post('photo', 'photo')->name('photo.store');
         });

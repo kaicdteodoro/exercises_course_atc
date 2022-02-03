@@ -45,26 +45,30 @@ Route::controller(BillController::class)
         $router->get('between/{value1}/{value2}', 'getValueBetween')->name('bills.between');
     });
 
-    Route::controller(HomeController::class)
-        ->group(function ($router) {
-            $router->get('', 'index')->name('home');
-            $router->get('photo/submit', 'photoForm')->name('photo.form');
-            $router->post('photo', 'photo')->name('photo.store');
-        });
-    Route::controller(PostController::class)
-        ->prefix('posts')
-        ->group(function ($router) {
-            $router->get('', 'index')->name('posts.index');
-            $router->post('store', 'store')->name('posts.store');
-            $router->get('show/{post}', 'show')->name('posts.show');
-            $router->get('edit/{post}', 'edit')->name('posts.edit');
-            $router->post('update/{post}', 'update')->name('posts.update');
-            $router->get('delete/{post}', 'delete')->name('posts.delete');
-        });
+Route::controller(HomeController::class)
+    ->group(function ($router) {
+        $router->get('', 'index')->name('home');
+        $router->get('photo/submit', 'photoForm')->name('photo.form');
+        $router->post('photo', 'photo')->name('photo.store');
+    });
+Route::controller(PostController::class)
+    ->prefix('posts')
+    ->group(function ($router) {
+        $router->get('', 'index')->name('posts.index');
+        $router->post('store', 'store')->name('posts.store');
+        $router->get('show/{post}', 'show')->name('posts.show');
+        $router->get('edit/{post}', 'edit')->name('posts.edit');
+        $router->post('update/{post}', 'update')->name('posts.update');
+        $router->get('delete/{post}', 'delete')->name('posts.delete');
+    });
 
 Route::get('primo/{limit}', function ($limit) {
-   \App\Jobs\FindMaxPrime::dispatch($limit, auth()->id());
-   return "processo enviado para fila.";
+    \App\Jobs\FindMaxPrime::dispatch($limit, auth()->id());
+    return "processo enviado para fila.";
+});
+Route::get('/celsius/{farenheit}', function ($farenheit) {
+    \App\Jobs\ConvertCelsius::dispatch($farenheit);
+    return "processo enviado para fila.";
 });
 
 Route::get('/notifications', function () {

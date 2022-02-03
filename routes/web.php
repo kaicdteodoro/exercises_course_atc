@@ -62,6 +62,18 @@ Route::controller(BillController::class)
             $router->get('delete/{post}', 'delete')->name('posts.delete');
         });
 
+Route::get('primo/{limit}', function ($limit) {
+   \App\Jobs\FindMaxPrime::dispatch($limit, auth()->id());
+   return "processo enviado para fila.";
+});
+
+Route::get('/notifications', function () {
+    $notifs = [];
+    foreach (\auth()->user()->unreadNotifications as $notification) {
+        $notifs[] = $notification->data["description"];
+    }
+    return $notifs;
+});
 
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 
